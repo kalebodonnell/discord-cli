@@ -49,6 +49,17 @@ class Channel:
             self.last_msg_id = messages[-1]['id']
         return l_messages
 
+    def send_message(self, msg):
+        data = {'content': msg}
+        url = 'https://discordapp.com/api/channels/{}/messages'.format(self.id)
+        print(data)
+        print(url)
+        print(requests.post(
+            url,
+            data=data,
+            headers={'authorization': self.client.token}
+        ))
+
 
 class Message:
     def __init__(self, text, author):
